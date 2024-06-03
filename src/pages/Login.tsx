@@ -5,23 +5,21 @@ import Button from "../components/common/Button";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import {useForm} from "react-hook-form";
-import { signup } from "../api/auth.api";
+import { login, signup } from "../api/auth.api";
 import { useAlert } from "../hooks/useAlert";
+import { SignUpStyle } from "./SignUp";
+import { useAuthStore } from "../store/authStore";
 
 export interface SignupProps {
     email: string;
     password: string;
 }
 
-function SignUp() {
+function Login() {
     const navigate = useNavigate();
     const showAlert = useAlert();
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
 
-    // const handleSubmit = (event: React.FormEvent<HTMLFormElement>)=>{
-    //     event.preventDefault();
-    // }
+    const{isLoggedIn, storeLogin, storeLogout} = useAuthStore();
 
     const {
         register,
@@ -30,12 +28,16 @@ function SignUp() {
     } = useForm<SignupProps>();
 
     const onSubmit = (data: SignupProps) => {
-        signup(data).then((res) => {
-            //성공
-            showAlert("회원가입이 완료되었습니다.");
-            navigate("/login");
-        });
-    }
+        login(data).then((res) => {
+
+            //상태 변화
+            storeLogin(res.token);
+            showAlert("로그인이 완료되었습니다.");
+            navigate("/");
+        })
+    };
+
+    console.log(isLoggedIn);
 
 
     return (
@@ -52,7 +54,7 @@ function SignUp() {
                         {errors.password && <p className="error-text">비밀번호를 입력해주세요</p>}
                     </fieldset>
                     <fieldset>
-                        <Button type = "submit" size="medium" schema="primary">회원가입</Button>
+                        <Button type = "submit" size="medium" schema="primary">로그인</Button>
                     </fieldset>
                     <div className="info">
                         <Link to="/reset">비밀번호 초기화</Link>
@@ -63,30 +65,6 @@ function SignUp() {
     );
 }
 
-export const SignUpStyle = styled.div`
-    max-width: ${({theme})=> theme.layout.width.small};
-    margin: 88px auto;
 
-    fieldset {
-        border: 0;
-        padding:  0 0 8px 0;
-        .error-text{
-            color: red;
-        }
-    }
 
-    input{
-        width: 100%;
-    }
-
-    button{
-        width: 100%;
-    }
-
-    .info{
-        text-align: center;
-        padding: 16px 0 0 0;
-    }
-`;
-
-export default SignUp;
+export default Login;

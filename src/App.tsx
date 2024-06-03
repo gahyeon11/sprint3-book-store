@@ -10,33 +10,70 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Router } from "express";
 import Error from "./components/common/Error";
 import SignUp from "./pages/SignUp";
+import ResetPassword from "./pages/ResetPassword";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout><Home /></Layout>,
-    errorElement:<Layout> <Error /></Layout>
+    element: (
+      <Layout>
+        <Home />
+      </Layout>
+    ),
+    errorElement: (
+      <Layout>
+        {" "}
+        <Error />
+      </Layout>
+    ),
   },
   {
     path: "/books",
-    element: <Layout><div>도서 목록</div></Layout>,
+    element: (
+      <Layout>
+        <div>도서 목록</div>
+      </Layout>
+    ),
   },
   {
     path: "/signup",
-    element: <Layout>
-      <SignUp/>
-    </Layout>
+    element: (
+      <Layout>
+        <SignUp />
+      </Layout>
+    ),
+  },
+  {
+    path: "/reset",
+    element: (
+      <Layout>
+        <ResetPassword />
+      </Layout>
+    ),
+  },
+  {
+    path: "/login",
+    element: (
+      <Layout>
+        <Login />
+      </Layout>
+    ),
   },
   {
     path: "*",
-    element: <Layout><div>404</div></Layout>
-  }
-])
+    element: (
+      <Layout>
+        <div>404</div>
+      </Layout>
+    ),
+  },
+]);
 
 function App() {
   return (
     <BookStoreThemeProvider>
-        <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </BookStoreThemeProvider>
   );
 }
