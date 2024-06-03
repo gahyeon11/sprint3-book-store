@@ -2,14 +2,10 @@ import { styled } from "styled-components";
 import logo from "../../assets/images/BookStoreLogo.png";
 import { FaSignInAlt, FaRegUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Category } from "../../models/category.model";
-import { fetchCategory } from "../../api/category.api";
 import { useCategory } from "../../hooks/useCategory";
 
-
 function Header() {
-    const {category} = useCategory();
+  const { category } = useCategory();
 
   return (
     <HeaderStyle>
@@ -21,13 +17,11 @@ function Header() {
       <nav className="category">
         <ul>
           {category.map((item) => (
-            <li key={item.id}>
+            <li key={item.category_id}>
               <Link
-                to={
-                  item.id === null ? "/books" : `/books?category_id=${item.id}`
-                }
+                to={item.category_id === null ? "/books" : `/books?category_id=${item.category_id}`}
               >
-                {item.name}
+                {item.category_name}
               </Link>
             </li>
           ))}
@@ -42,7 +36,7 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link to="/login">
+            <Link to="/signup">
               <FaRegUser />
               회원가입
             </Link>
@@ -57,7 +51,6 @@ const HeaderStyle = styled.header`
   width: 100%;
   margin: 0 auto;
   max-width: ${({ theme }) => theme.layout.width.large};
-
   display: flex;
   justify-content: space-between;
   align-items: center; /* Corrected typo: align-item to align-items */
@@ -74,7 +67,6 @@ const HeaderStyle = styled.header`
       gap: 32px;
       li {
         a {
-          /* Corrected: Used 'a' instead of 'Link' */
           font-size: 1.5rem;
           font-weight: 600;
           text-decoration: none;
@@ -86,21 +78,18 @@ const HeaderStyle = styled.header`
       }
     }
   }
-
   .auth {
     ul {
       display: flex;
       gap: 16px;
       li {
         a {
-          /* Corrected: Used 'a' instead of 'Link' */
           font-size: 1rem;
           font-weight: 600;
           text-decoration: none;
           display: flex;
           align-items: center;
           line-height: 1;
-
           svg {
             margin-right: 6px;
           }
