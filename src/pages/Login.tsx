@@ -34,7 +34,7 @@ function Login() {
             storeLogin(res.token);
             showAlert("로그인이 완료되었습니다.");
             navigate("/");
-        })
+        }, (error) => {showAlert("로그인에 실패했습니다. ")});
     };
 
     console.log(isLoggedIn);
