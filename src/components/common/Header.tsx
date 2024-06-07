@@ -26,6 +26,7 @@ function Header() {
                     ? "/books"
                     : `/books?category_id=${item.category_id}`
                 }
+                className={item.isActive ? "active" : ""}
               >
                 {item.category_name}
               </Link>
@@ -34,7 +35,7 @@ function Header() {
         </ul>
       </nav>
       <nav className="auth">
-        {isLoggedIn && (
+        {isLoggedIn ? (
           <ul>
             <li>
               <Link to="/cart">장바구니</Link>
@@ -46,8 +47,7 @@ function Header() {
               <button onClick={storeLogout}>로그아웃</button>
             </li>
           </ul>
-        )}
-        {!isLoggedIn && (
+        ) : (
           <ul>
             <li>
               <Link to="/login">
@@ -74,7 +74,7 @@ const HeaderStyle = styled.header`
   max-width: ${({ theme }) => theme.layout.width.large};
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Corrected typo: align-item to align-items */
+  align-items: center;
   padding: 20px 0;
   border-bottom: 1px solid ${({ theme }) => theme.color.background};
   .logo {
@@ -93,6 +93,9 @@ const HeaderStyle = styled.header`
           text-decoration: none;
           color: ${({ theme }) => theme.color.text};
           &:hover {
+            color: ${({ theme }) => theme.color.primary};
+          }
+          &.active {
             color: ${({ theme }) => theme.color.primary};
           }
         }

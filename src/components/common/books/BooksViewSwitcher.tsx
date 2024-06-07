@@ -11,7 +11,7 @@ const viewOptions = [
         icon: <FaList />
     },
     {
-        value: "list",
+        value: "grid",
         icon: <FaTh />
     },
 ];
