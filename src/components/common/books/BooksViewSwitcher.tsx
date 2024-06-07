@@ -19,6 +19,7 @@ export type ViewMode = "grid" | "list";
 
 function BooksViewSwitcher() {
     const [searchParams, setSearchParams] = useSearchParams();
+
     const handleSwitch = (value: ViewMode) => {
         const newSearchParams = new URLSearchParams(searchParams);
 
@@ -26,31 +27,32 @@ function BooksViewSwitcher() {
         setSearchParams(newSearchParams);
     }
 
-    useEffect(()=>{
-        if(!searchParams.get(QUERYSTRING.VIEW)){
+    useEffect(() => {
+        if (!searchParams.get(QUERYSTRING.VIEW)) {
             handleSwitch("grid");
         }
-    }, []);
+    }, [searchParams]); // 의존성 배열에 searchParams 추가
 
-  return (
-    <BooksViewSwitcherStyle>
-        {
-            viewOptions.map((option) => (
-                <Button  key = {option.value} size = "medium" schema={
-                    searchParams.get(QUERYSTRING.VIEW) === option.value ? "primary" : "normal"
-                } onClick={()=> handleSwitch(option.value as ViewMode)}>
+    return (
+        <BooksViewSwitcherStyle>
+            {viewOptions.map((option) => (
+                <Button 
+                    key={option.value} 
+                    size="medium" 
+                    schema={searchParams.get(QUERYSTRING.VIEW) === option.value ? "primary" : "normal"} 
+                    onClick={() => handleSwitch(option.value as ViewMode)}
+                >
                     {option.icon}
                 </Button>
-            ))
-        }
-    </BooksViewSwitcherStyle>
-  );
+            ))}
+        </BooksViewSwitcherStyle>
+    );
 }
 
 const BooksViewSwitcherStyle = styled.div`
     display: flex;
     gap: 8px;
-    svg{
+    svg {
         fill: #fff;
     }
 `;

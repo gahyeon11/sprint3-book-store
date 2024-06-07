@@ -17,6 +17,8 @@ function Books() {
           <BooksFilter />
           <BooksViewSwitcher />
         </div>
+        {/* <BooksFilter />
+        <BooksViewSwitcher /> */}
         {!isEmpty && <BooksList books={books} />}
         {isEmpty && <BooksEmpty />}
         {!isEmpty && <Pagination pagination={pagination} />}
