@@ -17,7 +17,7 @@ export interface SignupProps {
 
 function Login() {
     const navigate = useNavigate();
-    const showAlert = useAlert();
+    const {showAlert} = useAlert();
 
     const{isLoggedIn, storeLogin, storeLogout} = useAuthStore();
 
@@ -42,7 +42,7 @@ function Login() {
 
     return (
         <>
-            <Title size="large">회원가입</Title>
+            <Title size="large">로그인</Title>
             <SignUpStyle>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset>
@@ -54,7 +54,7 @@ function Login() {
                         {errors.password && <p className="error-text">비밀번호를 입력해주세요</p>}
                     </fieldset>
                     <fieldset>
-                        <Button type = "submit" size="medium" schema="primary">로그인</Button>
+                        <Button type = "submit" size="medium" scheme="primary">로그인</Button>
                     </fieldset>
                     <div className="info">
                         <Link to="/reset">비밀번호 초기화</Link>

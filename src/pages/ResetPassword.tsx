@@ -16,7 +16,7 @@ export interface SignupProps {
 
 function ResetPassword() {
   const navigate = useNavigate();
-  const showAlert = useAlert();
+  const {showAlert} = useAlert();
   const [resetRequested, setResetRequested] = useState(false); //reset 요청을 했는지 확인하는 state
   const {
     register,
@@ -68,7 +68,7 @@ function ResetPassword() {
           )}
 
           <fieldset>
-            <Button type="submit" size="medium" schema="primary">
+            <Button type="submit" size="medium" scheme="primary">
               {resetRequested ? "비밀번호 초기화" : "초기화 요청"}
             </Button>
           </fieldset>

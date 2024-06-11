@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { BookDetail } from "../../../models/book.model";
-import Button from "../Button";
+import { BookDetail } from "../../models/book.model";
+import Button from "../common/Button";
 import { FaHeart } from "react-icons/fa";
 
 interface Props {
@@ -10,7 +10,11 @@ interface Props {
 
 function LikeButton({ book, onClick }: Props) {
   return (
-    <LikeButtonStyle size="medium" schema={book.liked ? "like" : "normal"}>
+    <LikeButtonStyle
+      size="medium"
+      scheme={book.liked ? "like" : "normal"}
+      onClick={onClick}
+    >
       <FaHeart />
       {book.likes}
     </LikeButtonStyle>
@@ -20,7 +24,8 @@ function LikeButton({ book, onClick }: Props) {
 const LikeButtonStyle = styled(Button)`
   display: flex;
   gap: 6px;
-   svg {
+
+  svg {
     color: inherit;
     * {
       color: inherit;

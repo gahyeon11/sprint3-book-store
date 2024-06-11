@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import { styled } from "styled-components";
 import logo from "../../assets/images/BookStoreLogo.png";
 import { FaSignInAlt, FaRegUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useCategory } from "../../hooks/useCategory";
 import { useAuthStore } from "../../store/authStore";
+import { useSearchParams } from "react-router-dom";
 
 function Header() {
   const { category } = useCategory();
@@ -19,16 +21,13 @@ function Header() {
       <nav className="category">
         <ul>
           {category.map((item) => (
-            <li key={item.category_id}>
+            <li key={item.id}>
               <Link
                 to={
-                  item.category_id === null
-                    ? "/books"
-                    : `/books?category_id=${item.category_id}`
+                  item.id === null ? "/books" : `/books?categoryId=${item.id}`
                 }
-                className={item.isActive ? "active" : ""}
               >
-                {item.category_name}
+                {item.name}
               </Link>
             </li>
           ))}
@@ -41,7 +40,7 @@ function Header() {
               <Link to="/cart">장바구니</Link>
             </li>
             <li>
-              <Link to="/orderList">주문내역</Link>
+              <Link to="/orderlist">주문 내역</Link>
             </li>
             <li>
               <button onClick={storeLogout}>로그아웃</button>
@@ -79,7 +78,7 @@ const HeaderStyle = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.color.background};
   .logo {
     img {
-      width: 150px;
+      width: 200px;
     }
   }
   .category {
@@ -93,9 +92,6 @@ const HeaderStyle = styled.header`
           text-decoration: none;
           color: ${({ theme }) => theme.color.text};
           &:hover {
-            color: ${({ theme }) => theme.color.primary};
-          }
-          &.active {
             color: ${({ theme }) => theme.color.primary};
           }
         }
@@ -118,7 +114,6 @@ const HeaderStyle = styled.header`
           background: none;
           border: 0;
           cursor: pointer;
-
           svg {
             margin-right: 6px;
           }

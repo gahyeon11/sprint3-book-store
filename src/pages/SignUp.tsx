@@ -15,7 +15,7 @@ export interface SignupProps {
 
 function SignUp() {
     const navigate = useNavigate();
-    const showAlert = useAlert();
+    const {showAlert} = useAlert();
     // const [email, setEmail] = useState("");
     // const [password, setPassword] = useState("");
 
@@ -52,7 +52,7 @@ function SignUp() {
                         {errors.password && <p className="error-text">비밀번호를 입력해주세요</p>}
                     </fieldset>
                     <fieldset>
-                        <Button type = "submit" size="medium" schema="primary">회원가입</Button>
+                        <Button type = "submit" size="medium" scheme="primary">회원가입</Button>
                     </fieldset>
                     <div className="info">
                         <Link to="/reset">비밀번호 초기화</Link>

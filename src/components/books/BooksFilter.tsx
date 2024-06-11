@@ -1,23 +1,25 @@
-import styled from "styled-components";
-import { useCategory } from "../../../hooks/useCategory";
-import Button from "../Button";
+import { styled } from "styled-components";
+import { useCategory } from "../../hooks/useCategory";
 import { useSearchParams } from "react-router-dom";
-import { QUERYSTRING } from "../../../constants/queryString";
+import Button from "../common/Button";
+import { QUERYSTRING } from "../../constants/queryString";
 
 function BooksFilter() {
   const { category } = useCategory();
   const [searchParams, setSearchParams] = useSearchParams();
-  
+
   const handleCategory = (id: number | null) => {
     const newSearchParams = new URLSearchParams(searchParams);
+
     if (id === null) {
       newSearchParams.delete(QUERYSTRING.CATEGORY_ID);
     } else {
       newSearchParams.set(QUERYSTRING.CATEGORY_ID, id.toString());
     }
+
     setSearchParams(newSearchParams);
   };
-  
+
   const handleNews = () => {
     const newSearchParams = new URLSearchParams(searchParams);
 
@@ -26,6 +28,7 @@ function BooksFilter() {
     } else {
       newSearchParams.set(QUERYSTRING.NEWS, "true");
     }
+
     setSearchParams(newSearchParams);
   };
 
@@ -35,18 +38,18 @@ function BooksFilter() {
         {category.map((item) => (
           <Button
             size="medium"
-            schema={item.isActive ? "primary" : "normal"} // 버튼 스키마 변경
-            key={item.category_id}
-            onClick={() => handleCategory(item.category_id)}
+            scheme={item.isActive ? "primary" : "normal"}
+            key={item.id}
+            onClick={() => handleCategory(item.id)}
           >
-            {item.category_name}
+            {item.name}
           </Button>
         ))}
       </div>
       <div className="new">
         <Button
           size="medium"
-          schema={searchParams.get(QUERYSTRING.NEWS) ? "primary" : "normal"}
+          scheme={searchParams.get(QUERYSTRING.NEWS) ? "primary" : "normal"}
           onClick={() => handleNews()}
         >
           신간

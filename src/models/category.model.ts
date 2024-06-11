@@ -1,6 +1,5 @@
 export interface Category {
-    category_id: number | null;
-    category_name: string;
-    isActive?: boolean;
-  }
-  
+  id: number | null;
+  name: string;
+  isActive?: boolean;
+}

@@ -6,15 +6,15 @@ import Title from "../components/common/Title";
 import { BookDetail as IBookDetail } from "../models/book.model";
 import { formatNumber, formatDate } from "../utils/format";
 import EllipsisBox from "../components/common/EllipsisBox";
-import LikeButton from "../components/common/book/LikeButton";
+import LikeButton from "../components/book/LikeButton";
 
 const bookInfoList = [
   {
     label: "카테고리",
-    key: "cagoty_name",
+    key: "categoryName",
     filter: (book: IBookDetail) => (
-      <Link to={`/books?category_id=${book.category_id}`}>
-        {book.category_name}
+      <Link to={`/books?categoryId=${book.categoryId}`}>
+        {book.categoryName}
       </Link>
     ),
   },

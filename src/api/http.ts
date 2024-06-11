@@ -21,15 +21,18 @@ export const createClient = (config?: AxiosRequestConfig) => {
       return response;
     },
     (error) => {
-      if(error.response.status === 401){
+      // 로그인 만료 처리
+      if (error.response.status === 401) {
         removeToken();
         window.location.href = "/login";
         return;
       }
+
       return Promise.reject(error);
     }
   );
 
   return axiosInstance;
 };
+
 export const httpClient = createClient();

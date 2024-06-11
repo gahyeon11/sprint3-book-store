@@ -1,8 +1,7 @@
-export interface Book{
+export interface Book {
     id: number;
     title: string;
     img: number;
-    category_id: number;
     form: string;
     isbn: string;
     summary: string;
@@ -12,11 +11,12 @@ export interface Book{
     contents: string;
     price: number;
     likes: number;
+    categoryId: number;
     pubDate: string;
-
-}
-
-export interface BookDetail extends Book {
-    category_name: string;
+  }
+  
+  export interface BookDetail extends Book {
+    categoryName: string;
     liked: boolean;
-}
+  }
+  

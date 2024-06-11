@@ -13,21 +13,14 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "CommonJS",
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "types": ["node", "jest"], // 추가된 설정: Node와 Jest 타입 정의
-    "outDir": "./dist" // 추가된 설정: 출력 디렉토리 설정 (noEmit 설정과 함께 사용 시에는 필요 없음)
+    "jsx": "react-jsx"
   },
   "include": [
     "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist"
   ]
 }

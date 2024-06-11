@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import { styled } from "styled-components";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
+
 function Layout({ children }: LayoutProps) {
   return (
     <LayoutStyle>

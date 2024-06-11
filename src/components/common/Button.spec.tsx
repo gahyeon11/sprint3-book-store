@@ -10,7 +10,7 @@ describe("Button 컴포넌트 테스트", () => {
     //1. 렌더
     render(
       <BookStoreThemeProvider>
-        <Button size="large" schema="primary">
+        <Button size="large" scheme="primary">
           버튼
         </Button>
       </BookStoreThemeProvider>
@@ -22,7 +22,7 @@ describe("Button 컴포넌트 테스트", () => {
   it("size props 적용",()=> {
     const {container} = render(
         <BookStoreThemeProvider>
-            <Button size = "large" schema="primary">제목</Button>
+            <Button size = "large" scheme="primary">제목</Button>
         </BookStoreThemeProvider>
     );
     
@@ -31,7 +31,7 @@ describe("Button 컴포넌트 테스트", () => {
   it("scheam props 적용",()=> {
     const {container} = render(
         <BookStoreThemeProvider>
-            <Button size = "large" schema="primary">제목</Button>
+            <Button size = "large" scheme="primary">제목</Button>
         </BookStoreThemeProvider>
     );
     

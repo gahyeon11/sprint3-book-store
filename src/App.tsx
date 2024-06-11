@@ -17,12 +17,12 @@ const router = createBrowserRouter([
         <Home />
       </Layout>
     ),
-    errorElement: (
-      <Layout>
-        {" "}
-        <Error />
-      </Layout>
-    ),
+    // errorElement: (
+    //   <Layout>
+    //     {" "}
+    //     <Error />
+    //   </Layout>
+    // ),
   },
   {
     path: "/books",
@@ -64,14 +64,14 @@ const router = createBrowserRouter([
       </Layout>
     ),
   },
-  {
-    path: "*",
-    element: (
-      <Layout>
-        <div>404</div>
-      </Layout>
-    ),
-  },
+  // {
+  //   path: "*",
+  //   element: (
+  //     <Layout>
+  //       <div>404</div>
+  //     </Layout>
+  //   ),
+  // },
 ]);
 
 function App() {
