@@ -7,6 +7,7 @@ import { BookDetail as IBookDetail } from "../models/book.model";
 import { formatNumber, formatDate } from "../utils/format";
 import EllipsisBox from "../components/common/EllipsisBox";
 import LikeButton from "../components/book/LikeButton";
+import AddToCart from "../components/book/AddToCart";
 
 const bookInfoList = [
   {
@@ -75,8 +76,12 @@ function BookDetail() {
           ))}
           <p className="summary"> {book.summary}</p>
 
-          <div className="like"><LikeButton book={book} onClick={likeToggle}/></div>
-          <div className="add-cart">장바구니 넣기</div>
+          <div className="like">
+            <LikeButton book={book} onClick={likeToggle} />
+          </div>
+          <div className="add-cart">
+            <AddToCart book={book}/>
+          </div>
         </div>
       </header>
       <div className="content">
@@ -122,9 +127,7 @@ const BookDetailStyle = styled.div`
     }
   }
 
-  .content{
-
-  
+  .content {
   }
 `;
 
