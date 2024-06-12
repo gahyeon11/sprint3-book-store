@@ -1,7 +1,8 @@
+import { cart } from "../models/cart.model";
 import { httpClient } from "./http";
 
 interface AddCartParams {
-    bookId: number;
+    book_id: number;
     quantity: number;
   }
   
@@ -10,3 +11,13 @@ interface AddCartParams {
     return response.data;
   };
   
+
+  export const fetchCart = async() => {
+    const response = await httpClient.get<cart[]>("/carts");
+    return response.data;
+  }
+
+  export const deleteCart = async(cartId: number) => {
+    const response = await httpClient.delete(`/carts/${cartId}`);
+    return response.data;
+  }

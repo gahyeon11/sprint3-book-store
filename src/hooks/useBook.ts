@@ -38,13 +38,11 @@ export const useBook = (bookId: string | undefined) => {
       });
     }
   };
-
-
   const addToCart = (quantity: number) => {
     if (!book) return;
 
     addCart({
-      bookId: book.id,
+      book_id: book.id,
       quantity: quantity,
     }).then(() => {
       setCartAdded(true);
@@ -60,5 +58,7 @@ export const useBook = (bookId: string | undefined) => {
       setBook(book);
     });
   }, [bookId]);
+
+  
   return { book, likeToggle, addToCart, cartAdded };
 };
