@@ -61,7 +61,7 @@ function Cart() {
       items: checkedItems,
       totalPrice,
       totalQuantity,
-      fisrtBookTitle: carts[0].title,
+      firstBookTitle: carts[0].title,
     };
     showConfirm("주문 하시겠습니까? ", () => {
       navigate("/order", { state: orderData });
