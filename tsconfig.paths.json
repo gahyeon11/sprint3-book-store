@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths":{
+            "@/*": ["src/*"]  //"@/components/common/Header"로 사용 가능
+        }
+    }
+}
