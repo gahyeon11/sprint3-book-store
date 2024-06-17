@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { BookDetail } from "../models/book.model";
+import { BookDetail, BookReviewItem } from "../models/book.model";
 import { fetchBook, likeBook, unlikeBook } from "../api/books.api";
 import { useAuthStore } from "../store/authStore";
 import { useAlert } from "./useAlert";
 import { addCart } from "../api/carts.api";
+import { fetchBookReview } from "@/api/reviewApi";
 export const useBook = (bookId: string | undefined) => {
   const [book, setBook] = useState<BookDetail | null>(null);
   const { isLoggedIn } = useAuthStore();
   const { showAlert } = useAlert();
   const [cartAdded, setCartAdded] = useState(false);
+
+  const [reviews, setReview] = useState<BookReviewItem[]>([]);
 
   const likeToggle = () => {
     //권한 확인(로그인을 하지 않았을 경우)
@@ -57,8 +60,11 @@ export const useBook = (bookId: string | undefined) => {
     fetchBook(bookId).then((book) => {
       setBook(book);
     });
+
+    fetchBookReview(bookId).then((reviews)=>{
+      setReview(reviews);
+    })
   }, [bookId]);
 
-  
-  return { book, likeToggle, addToCart, cartAdded };
+  return { book, likeToggle, addToCart, cartAdded, reviews };
 };

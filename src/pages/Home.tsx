@@ -10,7 +10,9 @@ function Home() {
   );
 }
 const HomeStyle = styled.div`
-  color:
-
+    display: flex;
+    align-items: start;
+    justify-content: spa;
+    gap: 24px;
 `;
 export default Home;
