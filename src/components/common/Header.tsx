@@ -126,6 +126,7 @@ const HeaderStyle = styled.header`
           background: none;
           border: 0;
           cursor: pointer;
+
           svg {
             margin-right: 6px;
           }

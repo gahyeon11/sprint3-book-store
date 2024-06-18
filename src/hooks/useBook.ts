@@ -74,12 +74,12 @@ export const useBook = (bookId: string | undefined) => {
     if (!book) return;
 
     addBookReview(book.id.toString(), data).then((res) =>
-    //   fetchBookReview(book.id.toString()).then((reviews) => {
-    //     setReview(reviews);
-    //   }
-    // )
+      //   fetchBookReview(book.id.toString()).then((reviews) => {
+      //     setReview(reviews);
+      //   }
+      // )
 
-    showAlert(res.message)
+      showAlert(res.message)
     );
   };
 
