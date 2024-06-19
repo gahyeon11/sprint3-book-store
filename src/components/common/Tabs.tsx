@@ -18,7 +18,7 @@ function Tabs({ children }: TabsProps) {
   const tabs = React.Children.toArray(
     children
   ) as React.ReactElement<TabProps>[];
-
+   
   return (
     <TabsStyle>
       <div className="tab-header">

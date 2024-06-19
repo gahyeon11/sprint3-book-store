@@ -10,6 +10,8 @@ import LikeButton from "../components/book/LikeButton";
 import AddToCart from "../components/book/AddToCart";
 import BookReview from "../components/book/BookReview";
 import { Tabs, Tab } from "../../src/components/common/Tabs";
+import Modal from "../components/common/Modal";
+import { useState } from "react";
 
 const bookInfoList = [
   {
@@ -53,14 +55,19 @@ function BookDetail() {
   const { bookId } = useParams();
   const { book, likeToggle, reviews, addReview } = useBook(bookId);
 
+  const [isImgOpen, SetIsImgOpen] = useState(false);
+
   if (!book) return null;
 
   return (
     <BookDetailStyle>
       <header className="header">
-        <div className="img">
+        <div className="img" onClick={() => SetIsImgOpen(true)}>
           <img src={getImgSrc(book.img)} alt={book.title} />
         </div>
+        <Modal isOpen={isImgOpen} onClose={() => SetIsImgOpen(false)}>
+          <img src={getImgSrc(book.img)} alt={book.title} />
+        </Modal>
         <div className="info">
           <Title size="large" color="text">
             {book.title}
@@ -107,14 +114,18 @@ function BookDetail() {
     </BookDetailStyle>
   );
 }
-
 const BookDetailStyle = styled.div`
   .header {
     display: flex;
-    align-items: start;
+    align-items: flex-start; /* 'start' 대신 'flex-start' 사용 */
     gap: 24px;
-    padding: 0 0 24px 0;
+    padding-bottom: 24px;
+
+    > div {
+      position: relative !important;
+    }
   }
+
   .img {
     flex: 1;
     img {
@@ -122,6 +133,7 @@ const BookDetailStyle = styled.div`
       height: auto;
     }
   }
+
   .info {
     flex: 1;
     display: flex;
@@ -130,18 +142,27 @@ const BookDetailStyle = styled.div`
 
     dl {
       display: flex;
+      flex-direction: column; /* 필요에 따라 flex-direction 설정 */
       margin: 0;
       dt {
         width: 80px;
         color: ${({ theme }) => theme.color.secondary};
       }
+      dd {
+        margin: 0; /* dd 요소도 스타일링 */
+      }
       a {
         color: ${({ theme }) => theme.color.primary};
+        text-decoration: none; /* 필요에 따라 링크 스타일 설정 */
+        &:hover {
+          text-decoration: underline; /* 필요에 따라 호버 스타일 설정 */
+        }
       }
     }
   }
 
   .content {
+    /* 필요에 따라 스타일 추가 */
   }
 `;
 
