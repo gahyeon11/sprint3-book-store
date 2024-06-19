@@ -34,7 +34,7 @@ function BookItem({ book, view }: Props) {
 }
 
 //pick: book과 view 중 일부 요소만 꺼내서 사용하겠다 라는 뜻
-const BookItemStyle = styled.div<Pick<Props, "view">>`  
+export const BookItemStyle = styled.div<Pick<Props, "view">>`  
   a {
     display: flex;
     flex-direction: ${({ view }) => (view === "grid" ? "column" : "row")};
