@@ -26,7 +26,7 @@ export const addReview = http.post(
   () => {
     return HttpResponse.json(
       {
-        message: "리뷰가 등록되었습니다."
+        message: "리뷰가 등록되었습니다.",
       },
       {
         status: 200,
@@ -34,3 +34,9 @@ export const addReview = http.post(
     );
   }
 );
+
+export const reviewForMain = http.get("http://localhost:9999/reviews", () => {
+  return HttpResponse.json(mockReviewData, {
+    status: 200,
+  });
+});

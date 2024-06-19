@@ -22,24 +22,6 @@ function Books() {
     hasNextPage,
   } = useBooksInfinite();
 
-  // const moreRef = useRef(null);
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver((entries) => {
-  //     entries.forEach((entry) => {
-  //       if (entry.isIntersecting) {
-  //         loadMore();
-  //         observer.unobserve(entry.target);
-  //       }
-  //     });
-  //   });
-
-  //   if (moreRef.current) {
-  //     observer.observe(moreRef.current);
-  //   }
-  //   return () => observer.disconnect();
-  // }, [books, moreRef]);
-
 
   const moreRef = useIntersectionObserver(([entry])=> {
     if(entry.isIntersecting){
