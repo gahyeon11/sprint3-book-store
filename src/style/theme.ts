@@ -11,6 +11,7 @@ export type HeadingSize = "large" | "medium" | "small";
 export type ButtonSize = "large" | "medium" | "small";
 export type ButtonScheme = "primary" | "normal" | "like";
 export type LayoutWidth = "large" | "medium" | "small";
+export type MediaQuery = "mobile" | "tablet" | "desktop";
 
 interface Theme {
   name: ThemeName;
@@ -40,6 +41,10 @@ interface Theme {
       [key in LayoutWidth]: string;
     };
   };
+
+  mediaQuery: {
+    [key in MediaQuery]: string;
+  }
 }
 
 export const light: Theme = {
@@ -97,11 +102,16 @@ export const light: Theme = {
   },
   layout: {
     width: {
-      large: "1020px",
-      medium: "760px",
-      small: "320px",
+      large: "(max-width: 768px)",
+      medium: "(max-width: 1024px)",
+      small: "(min-width:1025px)",
     },
   },
+  mediaQuery: {
+    mobile: "(max-width: 760px)",
+    tablet: "(max-width: 1020px)",
+    desktop: "(min-width: 1020px)",
+  }
 };
 
 export const dark: Theme = {

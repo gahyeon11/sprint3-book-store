@@ -5,9 +5,13 @@ import { useMain } from "../hooks/useMain";
 import styled from "styled-components";
 import MainBest from "../components/main/MainBest";
 import Banner from "../components/common/banner/Banner";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 function Home() {
   const { reviews, newBooks, bestBooks, banners } = useMain();
+  const {isMobile} = useMediaQuery();
+
+
   return (
     <HomeStyle>
       <Banner banners={banners} />
