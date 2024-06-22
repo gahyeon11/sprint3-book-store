@@ -17,9 +17,6 @@ export interface SignupProps {
 
 function ResetPassword() {
   const { userResetPassword, userResetRequest, resetRequested } = useAuth();
-  // const navigate = useNavigate();
-  // const { showAlert } = useAlert();
-  // const [resetRequested, setResetRequested] = useState(false); //reset 요청을 했는지 확인하는 state
   const {
     register,
     handleSubmit,
@@ -27,13 +24,6 @@ function ResetPassword() {
   } = useForm<SignupProps>();
 
   const onSubmit = (data: SignupProps) => {
-    // if (resetRequested) {
-    //   //초기화
-    //   userResetPassword(data);
-    // } else {
-    //   //요청
-    //   userResetRequest(data);
-    // }
 
     resetRequested ? userResetPassword(data) : userResetRequest(data);
   };

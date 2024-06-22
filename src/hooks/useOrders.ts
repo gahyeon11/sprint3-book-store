@@ -19,7 +19,6 @@ export const useOrders = () => {
       return;
     }
     fetchOrder(orderId).then((orderDetail) => {
-      //detail정보를 어디에 저장? -> OrderListItem을 Order을 상속받아 새로운 model로 정의하여 Detail 추가
       setSelectedItemId(orderId);
       setOrders(
         orders.map((item) => {
