@@ -35,9 +35,11 @@ function ReviewItem({ review }: Props) {
     </ReviewItemStyle>
   );
 }
+
 const ReviewItemStyle = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: start;
   gap: 12px;
 
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);

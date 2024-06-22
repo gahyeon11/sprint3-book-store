@@ -97,6 +97,7 @@ export const BookItemStyle = styled.div<Pick<Props, "view">>`
         }
     }
   }
+    
 `;
 
 export default BookItem;

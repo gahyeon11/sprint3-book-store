@@ -165,5 +165,49 @@ export const CartStyle = styled.div`
       text-align: right;
     }
   }
+  @media screen and (${({ theme }) => theme.mediaQuery.mobile}) {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 0;
+
+    .content {
+      width: 100%;
+      gap: 8px;
+    }
+
+    .summary {
+      width: 100%;
+      gap: 16px;
+    }
+
+    .order-info {
+      h1 {
+        padding: 0 0 16px 0;
+      }
+
+      padding: 8px;
+    }
+
+    .delivery {
+      fieldset {
+        padding: 0 0 8px 0;
+        gap: 4px;
+
+        label {
+          width: 70px;
+        }
+
+        .input {
+          input {
+            width: 100%;
+          }
+        }
+      }
+
+      .error-text {
+        padding: 0 0 8px 0;
+      }
+    }
+  }
 `;
 export default Cart;

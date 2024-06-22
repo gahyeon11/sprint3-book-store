@@ -22,10 +22,9 @@ function Books() {
     hasNextPage,
   } = useBooksInfinite();
 
-
-  const moreRef = useIntersectionObserver(([entry])=> {
-    if(entry.isIntersecting){
-        loadMore();
+  const moreRef = useIntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      loadMore();
     }
   });
 
@@ -45,9 +44,13 @@ function Books() {
     <div>
       <Title size="large">도서 검색 결과</Title>
       <BooksStyle>
-        <div className="filter">
-          <BooksFilter />
-          <BooksViewSwitcher />
+        <div className="button">
+          <div className="filter">
+            <BooksFilter />
+          </div>
+          <div className="switch">
+            <BooksViewSwitcher />
+          </div>
         </div>
         <BooksList books={books} />
         {/* <Pagination pagination={pagination} /> */}
@@ -71,13 +74,39 @@ const BooksStyle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 24px;
+  gap: 14px;
 
-  .filter {
+  .button {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+
+    .filter {
+      padding: 10px 0;
+    }
+
+    .switch {
+    }
+  }
+
+  @media screen AND ${({ theme }) => theme.mediaQuery.mobile} {
+  .button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start; /* switch 버튼을 왼쪽에 위치시킴 */
+
+    .filter {
+      padding: 10px 0;
+    justify-content: space-between;
+
+    }
+
+    .switch {
+    align-self: flex-start; /* switch 버튼을 왼쪽 정렬 */
+    }
+  }
   }
 `;
 

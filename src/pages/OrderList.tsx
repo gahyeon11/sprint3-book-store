@@ -30,15 +30,15 @@ function OrderList() {
             {orders.map((order) => (
               <React.Fragment key={order.id}>
                 <tr>
-                  <td>{order.id}</td>
-                  <td>{formatDate(order.createdAt, "YYYY.MM.DD")}</td>
-                  <td>{order.address}</td>
-                  <td>{order.receiver}</td>
-                  <td>{order.contact}</td>
-                  <td>{order.bookTitle}</td>
-                  <td>{order.totalQuantity} 권</td>
-                  <td>{formatNumber(order.totalPrice)} 원</td>
-                  <td>
+                  <td data-label="id">{order.id}</td>
+                  <td data-label="주문일자">{formatDate(order.createdAt, "YYYY.MM.DD")}</td>
+                  <td data-label="주소">{order.address}</td>
+                  <td data-label="수령인">{order.receiver}</td>
+                  <td data-label="전화번호">{order.contact}</td>
+                  <td data-label="대표상품명">{order.bookTitle}</td>
+                  <td data-label="수량">{order.totalQuantity} 권</td>
+                  <td data-label="금액">{formatNumber(order.totalPrice)} 원</td>
+                  <td data-label="">
                     <Button
                       size="small"
                       scheme="normal"
@@ -50,8 +50,7 @@ function OrderList() {
                 </tr>
                 {selectedItemId === order.id && (
                   <tr>
-                    <td></td>
-                    <td colSpan={8}>
+                    <td colSpan={9}>
                       <ul className="detail">
                         {order?.detail &&
                           order.detail.map((item) => (
@@ -101,6 +100,51 @@ const OrderListStyle = styled.div`
           display: flex;
           padding: 8px 12px;
           gap: 8px;
+        }
+      }
+    }
+  }
+
+  @media screen and (${({ theme }) => theme.mediaQuery.mobile}) {
+    table {
+      display: block;
+      thead {
+        display: none;
+      }
+      tbody {
+        display: block;
+      }
+      tr {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid ${({ theme }) => theme.color.border};
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+      }
+      td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+        
+        &:before {
+          content: attr(data-label);
+          position: absolute;
+          left: 0;
+          width: 45%;
+          padding-left: 15px;
+          font-weight: bold;
+          white-space: nowrap;
+        }
+      }
+      .detail {
+        li {
+          div {
+            flex-direction: column;
+            gap: 4px;
+          }
         }
       }
     }

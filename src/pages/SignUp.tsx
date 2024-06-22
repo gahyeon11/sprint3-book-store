@@ -60,29 +60,28 @@ function SignUp() {
 }
 
 export const SignUpStyle = styled.div`
-    max-width: ${({theme})=> theme.layout.width.small};
-    margin: 88px auto;
+  max-width: ${({ theme }) => theme.layout.width.small};
+  margin: 80px auto;
 
-    fieldset {
-        border: 0;
-        padding:  0 0 8px 0;
-        .error-text{
-            color: red;
-        }
+  fieldset {
+    border: 0;
+    padding: 0 0 8px 0;
+    .error-text {
+      color: red;
     }
+  }
 
-    input{
-        width: 100%;
-    }
+  input {
+    width: 100%;
+  }
 
-    button{
-        width: 100%;
-    }
+  button {
+    width: 100%;
+  }
 
-    .info{
-        text-align: center;
-        padding: 16px 0 0 0;
-    }
+  .info {
+    text-align: center;
+    padding: 16px 0 0 0;
+  }
 `;
-
 export default SignUp;

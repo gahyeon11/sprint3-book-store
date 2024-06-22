@@ -25,11 +25,17 @@ export const useBooksInfinite = () => {
     });
   };
 
-  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery(
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+  } = useInfiniteQuery(
     ["books", location.search],
     ({ pageParam = 1 }) => getBooks({ pageParam }),
     {
       getNextPageParam: (lastPage) => {
+        if (!lastPage || !lastPage.pagination) return null;
         const isLastPage =
           Math.ceil(lastPage.pagination.totalCount / LIMIT) ===
           lastPage.pagination.currentPage;
@@ -38,8 +44,8 @@ export const useBooksInfinite = () => {
     }
   );
 
-  const books = data ? data.pages.flatMap((page) => page.books) : [];
-  const pagination = data ? data.pages[data.pages.length - 1].pagination : {};
+  const books = data?.pages?.flatMap((page) => page.books) || [];
+  const pagination = data?.pages?.[data.pages.length - 1]?.pagination || {};
   const isEmpty = books.length === 0;
 
   return {

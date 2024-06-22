@@ -7,6 +7,7 @@ interface FetchBooksParams {
   news?: boolean;
   currentPage?: number;
   limit: number;
+  title?: string;
 }
 
 interface FetchBooksResponse {

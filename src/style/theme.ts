@@ -50,20 +50,20 @@ interface Theme {
 export const light: Theme = {
   name: "light",
   color: {
-    primary: "#ff5800",
+    primary: "#FF8000",
     background: "lightgrey",
-    secondary: "#5F5F5F",
-    third: "green",
+    secondary: "#0B243B",
+    third: "#81BEF7",
     border: "grey",
     text: "black",
     
   },
   heading: {
     large: {
-      fontSize: "2rem",
+      fontSize: "1.7rem",
     },
     medium: {
-      fontSize: "1.5rem",
+      fontSize: "1.4rem",
     },
     small: {
       fontSize: "1rem",
@@ -86,7 +86,7 @@ export const light: Theme = {
   buttonScheme: {
     primary: {
       color: "white",
-      backgroundColor: "midnightblue",
+      backgroundColor: "#81BEF7",
     },
     normal: {
       color: "black",
@@ -102,9 +102,9 @@ export const light: Theme = {
   },
   layout: {
     width: {
-      large: "(max-width: 768px)",
-      medium: "(max-width: 1024px)",
-      small: "(min-width:1025px)",
+      large: "1020px",
+      medium: "760px",
+      small: "320px",
     },
   },
   mediaQuery: {

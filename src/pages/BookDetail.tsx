@@ -55,17 +55,17 @@ function BookDetail() {
   const { bookId } = useParams();
   const { book, likeToggle, reviews, addReview } = useBook(bookId);
 
-  const [isImgOpen, SetIsImgOpen] = useState(false);
+  const [isImgOpen, setIsImgOpen] = useState(false);
 
   if (!book) return null;
 
   return (
     <BookDetailStyle>
       <header className="header">
-        <div className="img" onClick={() => SetIsImgOpen(true)}>
+        <div className="img" onClick={() => setIsImgOpen(true)}>
           <img src={getImgSrc(book.img)} alt={book.title} />
         </div>
-        <Modal isOpen={isImgOpen} onClose={() => SetIsImgOpen(false)}>
+        <Modal isOpen={isImgOpen} onClose={() => setIsImgOpen(false)}>
           <img src={getImgSrc(book.img)} alt={book.title} />
         </Modal>
         <div className="info">
@@ -74,7 +74,7 @@ function BookDetail() {
           </Title>
 
           {bookInfoList.map((item) => (
-            <dl>
+            <dl key={item.key}>
               <dt>{item.label}</dt>
               <dd>
                 {item.filter
@@ -83,13 +83,15 @@ function BookDetail() {
               </dd>
             </dl>
           ))}
-          <p className="summary"> {book.summary}</p>
+          <p className="summary">{book.summary}</p>
 
-          <div className="like">
-            <LikeButton book={book} onClick={likeToggle} />
-          </div>
-          <div className="add-cart">
-            <AddToCart book={book} />
+          <div className="actions">
+            <div className="like">
+              <LikeButton book={book} onClick={likeToggle} />
+            </div>
+            <div className="add-cart">
+              <AddToCart book={book} />
+            </div>
           </div>
         </div>
       </header>
@@ -97,12 +99,12 @@ function BookDetail() {
         <Tabs>
           <Tab title="상세 설명">
             <Title size="medium">상세 설명</Title>
-            <EllipsisBox lineLimit={4}> {book.detail}</EllipsisBox>
+            <EllipsisBox lineLimit={4}>{book.detail}</EllipsisBox>
           </Tab>
 
           <Tab title="목차">
             <Title size="medium">목차</Title>
-            <p className="index"> {book.contents}</p>
+            <p className="index">{book.contents}</p>
           </Tab>
 
           <Tab title="리뷰">
@@ -114,10 +116,11 @@ function BookDetail() {
     </BookDetailStyle>
   );
 }
+
 const BookDetailStyle = styled.div`
   .header {
     display: flex;
-    align-items: flex-start; /* 'start' 대신 'flex-start' 사용 */
+    align-items: flex-start;
     gap: 24px;
     padding-bottom: 24px;
 
@@ -129,6 +132,7 @@ const BookDetailStyle = styled.div`
   .img {
     flex: 1;
     img {
+      margin-top: 50px;
       width: 100%;
       height: auto;
     }
@@ -142,27 +146,102 @@ const BookDetailStyle = styled.div`
 
     dl {
       display: flex;
-      flex-direction: column; /* 필요에 따라 flex-direction 설정 */
+      flex-direction: column;
       margin: 0;
       dt {
         width: 80px;
         color: ${({ theme }) => theme.color.secondary};
       }
       dd {
-        margin: 0; /* dd 요소도 스타일링 */
+        margin: 0;
       }
       a {
         color: ${({ theme }) => theme.color.primary};
-        text-decoration: none; /* 필요에 따라 링크 스타일 설정 */
+        text-decoration: none;
         &:hover {
-          text-decoration: underline; /* 필요에 따라 호버 스타일 설정 */
+          text-decoration: underline;
         }
       }
     }
+    .add-cart {
+      align-items: flex-start;
+      z-index: 1;
+    }
+
+    // .actions {
+    //   display: flex;
+    //   flex-direction: row;
+    //   justify-content: space-between;
+    //   gap: 12px;
+
+    //   .add-cart {
+    //     margin-top: -55px;
+    //   }
+    // }
   }
 
   .content {
-    /* 필요에 따라 스타일 추가 */
+    top: -70px;
+    position: relative;
+  }
+
+  @media screen and (${({ theme }) => theme.mediaQuery.mobile}) {
+    .header {
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 16px;
+    }
+
+    .img {
+      img {
+        margin-top: 10px;
+      }
+    }
+
+    .info {
+      align-items: flex-start;
+      text-align: left;
+      width: 100%;
+
+      dl {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: 100%;
+
+        dt,
+        dd {
+          width: auto;
+          flex-basis: calc(50% - 10px); /* Half width minus gap */
+        }
+
+        dt {
+          padding-right: 8px;
+        }
+
+        dd {
+          margin-bottom: 8px; /* Add space between rows */
+        }
+      }
+    }
+
+    .img {
+      width: 80%;
+    }
+
+    .actions {
+      position: relative;
+      z-index: 0;
+
+      .add-cart {
+        z-index: 1;
+      }
+    }
+  }
+  .content {
+    top: 0px;
+
   }
 `;
 

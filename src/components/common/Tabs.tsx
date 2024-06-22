@@ -18,12 +18,13 @@ function Tabs({ children }: TabsProps) {
   const tabs = React.Children.toArray(
     children
   ) as React.ReactElement<TabProps>[];
-   
+
   return (
     <TabsStyle>
       <div className="tab-header">
         {tabs.map((tab, index) => (
           <button
+            key={index}
             onClick={() => setActiveIndex(index)}
             className={activeIndex === index ? "active" : ""}
           >
@@ -35,34 +36,41 @@ function Tabs({ children }: TabsProps) {
     </TabsStyle>
   );
 }
+
 const TabsStyle = styled.div`
-.tab-header {
-display: flex;
-gap: 2px;
-border-radius: 1px; solid #ddd;
+  .tab-header {
+    display: flex;
+    gap: 2px;
+    border-radius: 1px solid #ddd;
 
-button{
-border: none;
-background: #ddd;
-cursor: pointer;
-font-size: 1.25rem;
-font-weight: bold;
-color: ${({ theme }) => theme.color.text};
-border-radius:  ${({ theme }) => theme.borderRadius.default} ${({ theme }) =>
-  theme.borderRadius.default} 0 0;
-padding: 12px;
+    button {
+      border: none;
+      background: #ddd;
+      cursor: pointer;
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: ${({ theme }) => theme.color.text};
+      border-radius: ${({ theme }) => theme.borderRadius.default} ${({ theme }) =>
+        theme.borderRadius.default} 0 0;
+      padding: 12px;
+      transition: background 0.3s ease;
 
-&.active{
-color: #fff;
-background:  ${({ theme }) => theme.color.primary};
-}
+      &:hover,
+      &:focus {
+        background: ${({ theme }) => theme.color.secondary};
+        outline: none;
+      }
 
-}
-}
+      &.active {
+        color: #fff;
+        background: ${({ theme }) => theme.color.primary};
+      }
+    }
+  }
 
-.tab-content{
-padding:24px 0;
-}
+  .tab-content {
+    padding: 24px 0;
+  }
 `;
 
 export { Tabs, Tab };

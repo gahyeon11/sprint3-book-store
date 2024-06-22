@@ -3,9 +3,10 @@ import styled from "styled-components";
 import BannerItem from "./BannerItem";
 import { useMemo, useState } from "react";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { Book } from "../../../models/book.model";
 
 interface Props {
-  banners: IBanner[];
+  banners: Book[];
 }
 
 function Banner({ banners }: Props) {

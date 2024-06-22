@@ -4,6 +4,7 @@ import { FaList, FaTh } from "react-icons/fa";
 import { useSearchParams } from "react-router-dom";
 import { QUERYSTRING } from "../../constants/queryString";
 import { useEffect } from "react";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 const viewOptions = [
   {
@@ -33,12 +34,14 @@ function BooksViewSwitcher() {
     }
   }, [searchParams]); // 의존성 배열에 searchParams 추가
 
+  const { isMobile } = useMediaQuery();
+
   return (
     <BooksViewSwitcherStyle>
       {viewOptions.map((option) => (
         <Button
           key={option.value}
-          size="medium"
+          size={isMobile ? "small":"medium"}
           scheme={
             searchParams.get(QUERYSTRING.VIEW) === option.value
               ? "primary"

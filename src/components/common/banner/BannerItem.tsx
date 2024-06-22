@@ -1,19 +1,24 @@
 import { Banner as IBanner } from "@/models/banner.model";
+import { Book } from "../../../models/book.model";
+import { getImgSrc } from "../../../utils/image";
 import styled from "styled-components";
 
 interface Props {
-  banner: IBanner;
+  banner: Book;
+  books?: Book[];
 }
 
 function BannerItem({ banner }: Props) {
   return (
     <BannerItemStyle>
       <div className="img">
-        <img src={banner.image} alt={banner.title} />
+        {/* <img src={banner.img} alt={banner.title} /> */}
+        {/* <img src={getImgSrc(banner.img)} alt={banner.title} /> */}
+        <img src={`https://picsum.photos/id/${banner.img}/1200/400`} alt={banner.title} />
       </div>
       <div className="content">
         <h2>{banner.title}</h2>
-        <p>{banner.description}</p>
+        <p>{banner.summary}</p>
       </div>
     </BannerItemStyle>
   );

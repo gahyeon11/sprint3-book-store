@@ -29,27 +29,28 @@ function AddToCart({ book }: Props) {
 
   return (
     <AddToCartStyle $added={cartAdded}>
-      <div>
+      <div className="quantity-control">
+        <Button size="medium" scheme="normal" onClick={handleDecrease}>
+          -
+        </Button>
         <InputText
           inputType="number"
           value={quantity}
           onChange={handleChange}
-          onClick={handleIncrease}
         />
         <Button size="medium" scheme="normal" onClick={handleIncrease}>
           +
         </Button>
-        <Button size="medium" scheme="normal" onClick={handleDecrease}>
-          -
+      </div>
+      <div className="addCart">
+        <Button
+          size="medium"
+          scheme="primary"
+          onClick={() => addToCart(quantity)}
+        >
+          장바구니 담기
         </Button>
       </div>
-      <Button
-        size="medium"
-        scheme="primary"
-        onClick={() => addToCart(quantity)}
-      >
-        장바구니 담기
-      </Button>
       <div className="added">
         <p>장바구니에 추가되었습니다.</p>
         <Link to="/Cart">장바구니로 이동</Link>
@@ -64,24 +65,70 @@ interface AddToCartStyleProps {
 
 const AddToCartStyle = styled.div<AddToCartStyleProps>`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
   position: relative;
+
+  .quantity-control {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    gap: 7px;
+
+    input {
+      text-align: center;
+      width: 50px;
+    }
+  }
+
+  .addCart {
+    margin-top: 16px;
+  }
 
   .added {
     position: absolute;
-    right: 0;
-    bottom: -90px;
+    right: 50px;
+    bottom: 0px;
     background: ${({ theme }) => theme.color.background};
     border-radius: ${({ theme }) => theme.borderRadius.default};
     padding: 8px 12px;
     opacity: ${({ $added }) => ($added ? "1" : "0")};
     transition: all 0.5s ease;
+    z-index: 100;  // 높은 z-index 설정
 
     p {
       padding: 0 0 8px 0;
       margin: 0;
     }
+  }
+
+  @media screen and (${({ theme }) => theme.mediaQuery.mobile}) {
+    flex-direction: column;
+    align-items: stretch;
+
+    .quantity-control {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .addCart {
+      width: 100%;
+
+      button {
+        width: 100%;
+      }
+    }
+
+    .added {
+      left: 150px;
+      bottom: 0px;
+      transform: translateX(0%);
+      // transform: translateX(0%);
+
+      width: 150px;
+      text-align: center;
+    }
+      
   }
 `;
 

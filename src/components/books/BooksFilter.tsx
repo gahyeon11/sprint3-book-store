@@ -3,6 +3,7 @@ import { useCategory } from "../../hooks/useCategory";
 import { useSearchParams } from "react-router-dom";
 import Button from "../common/Button";
 import { QUERYSTRING } from "../../constants/queryString";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 function BooksFilter() {
   const { category } = useCategory();
@@ -32,12 +33,14 @@ function BooksFilter() {
     setSearchParams(newSearchParams);
   };
 
+  const { isMobile } = useMediaQuery();
+
   return (
     <BooksFilterStyle>
       <div className="category">
         {category.map((item) => (
           <Button
-            size="medium"
+            size={isMobile ? "small" : "medium"}
             scheme={item.isActive ? "primary" : "normal"}
             key={item.id}
             onClick={() => handleCategory(item.id)}
@@ -48,7 +51,7 @@ function BooksFilter() {
       </div>
       <div className="new">
         <Button
-          size="medium"
+          size={isMobile ? "small" : "medium"}
           scheme={searchParams.get(QUERYSTRING.NEWS) ? "primary" : "normal"}
           onClick={() => handleNews()}
         >
@@ -61,7 +64,7 @@ function BooksFilter() {
 
 const BooksFilterStyle = styled.div`
   display: flex;
-  gap: 24px;
+  gap: 20px;
 
   .category {
     display: flex;
