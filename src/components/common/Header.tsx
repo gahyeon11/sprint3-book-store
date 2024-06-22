@@ -275,26 +275,5 @@ const HeaderStyle = styled.header<HeaderStyleProps>`
   }
 `;
 
-// const SearchResults = styled.div`
-//   position: absolute;
-//   top: 100%;
-//   left: 0;
-//   width: 100%;
-//   background: white;
-//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-//   z-index: 10;
-//   max-height: 300px;
-//   overflow-y: auto;
-
-//   div {
-//     padding: 8px 16px;
-//     cursor: pointer;
-//     color: ${({ theme }) => theme.color.text};
-
-//     &:hover {
-//       background: ${({ theme }) => theme.color.background};
-//     }
-//   }
-// `;
 
 export default Header;

@@ -28,6 +28,7 @@ function BookReviewAdd({ onAdd }: Props) {
             <select 
               {...register("score", { required: true, valueAsNumber: true })}
             >
+              {/* [1,2,3,4,5].map((it)=>(it)) */}
               <option value="1">1점</option>
               <option value="2">2점</option>
               <option value="3">3점</option>

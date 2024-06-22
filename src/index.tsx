@@ -9,7 +9,7 @@ async function mountApp (){
 
   if(process.env.NODE_ENV === "development"){
     const {worker} = require("./mock/browser");
-    await worker.start(); //msw 시작
+    await worker.start();
   }
 
 
